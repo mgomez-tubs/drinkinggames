@@ -5,6 +5,7 @@
         <item>Reply to all</item>
     </string-array>
 
+    <!-- apparently this should be strings-->
     <string-array name="reply_values">
         <item>reply</item>
         <item>reply_all</item>

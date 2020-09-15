@@ -9,5 +9,22 @@
         android:id="@+id/navigation_fragment_main"
         android:name="com.example.drinkinggamesapp.Fragment_main"
         android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" />
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_navigation_fragment_main_to_demoBlankFragment"
+            app:destination="@id/demoBlankFragment" />
+        <action
+            android:id="@+id/action_navigation_fragment_main_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <!-- The id of these Fragment Tags NEEDS to be the same as the one in the Bottom Nav Drawer -->
+    <fragment
+        android:id="@+id/demoBlankFragment"
+        android:name="com.example.drinkinggamesapp.DemoBlankFragment"
+        android:label="fragment_demo_blank"
+        tools:layout="@layout/fragment_demo_blank" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.drinkinggamesapp.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

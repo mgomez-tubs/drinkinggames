@@ -14,15 +14,8 @@ import android.view.ViewGroup;
 
 public class Fragment_main extends Fragment{
 
-    NavController navController;
     public Fragment_main() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        navController = Navigation.findNavController(view);
     }
 
     @Override
