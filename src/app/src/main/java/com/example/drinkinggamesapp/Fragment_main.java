@@ -2,16 +2,27 @@ package com.example.drinkinggamesapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Fragment_main extends Fragment {
+public class Fragment_main extends Fragment{
 
+    NavController navController;
     public Fragment_main() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
     }
 
     @Override
