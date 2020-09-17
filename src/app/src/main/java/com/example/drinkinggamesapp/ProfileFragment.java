@@ -8,10 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class DemoBlankFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
 
-    public DemoBlankFragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -24,6 +24,6 @@ public class DemoBlankFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_demo_blank, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }

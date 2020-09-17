@@ -20,9 +20,9 @@
     <!-- The id of these Fragment Tags NEEDS to be the same as the one in the Bottom Nav Drawer -->
     <fragment
         android:id="@+id/demoBlankFragment"
-        android:name="com.example.drinkinggamesapp.DemoBlankFragment"
+        android:name="com.example.drinkinggamesapp.ProfileFragment"
         android:label="fragment_demo_blank"
-        tools:layout="@layout/fragment_demo_blank" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.drinkinggamesapp.SettingsFragment"
