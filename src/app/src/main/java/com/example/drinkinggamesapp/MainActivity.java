@@ -8,9 +8,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,6 +24,8 @@ public class MainActivity extends AppCompatActivity{
         navController = Navigation.findNavController(this, R.id.fragment_main);
         // Accessing the items of the bottom navigation bar directly will not work!
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
+
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
     }
 }

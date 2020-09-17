@@ -27,6 +27,7 @@
         android:layout_height="0dp"
         android:layout_weight=".4">
 
+        <!-- Set the style with style:"...". If a contained Button is to be used, style doesnt neded to be set  -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_quick_match"
             android:layout_width="wrap_content"
@@ -37,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_new_game"

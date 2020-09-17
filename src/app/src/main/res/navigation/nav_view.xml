@@ -11,20 +11,20 @@
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen" >
         <action
-            android:id="@+id/action_navigation_fragment_main_to_demoBlankFragment"
-            app:destination="@id/demoBlankFragment" />
-        <action
             android:id="@+id/action_navigation_fragment_main_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"/>
+        <action
+            android:id="@+id/action_navigation_fragment_main_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <!-- The id of these Fragment Tags NEEDS to be the same as the one in the Bottom Nav Drawer -->
-    <fragment
-        android:id="@+id/demoBlankFragment"
-        android:name="com.example.drinkinggamesapp.ProfileFragment"
-        android:label="fragment_demo_blank"
-        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.drinkinggamesapp.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.drinkinggamesapp.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
