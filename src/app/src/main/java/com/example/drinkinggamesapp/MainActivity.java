@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         // Set Up navigation controller for this class
-        // something is wrong here below
         navController = Navigation.findNavController(this, R.id.fragment_main);
         // Accessing the items of the bottom navigation bar directly will not work!
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);

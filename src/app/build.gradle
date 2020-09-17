@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        App {
+            storeFile file('C:\\Android\\keystore.jks')
+            storePassword 'datablock4'
+            keyPassword 'datablock4'
+            keyAlias 'key0'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -12,6 +20,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.App
     }
 
     buildTypes {
