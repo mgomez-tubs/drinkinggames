@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_fragment_main_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_navigation_fragment_main_to_newGameSetup"
+            app:destination="@id/newGameSetup" />
     </fragment>
     <!-- The id of these Fragment Tags NEEDS to be the same as the one in the Bottom Nav Drawer -->
     <fragment
@@ -27,4 +30,9 @@
         android:name="com.example.drinkinggamesapp.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <activity
+        android:id="@+id/newGameSetup"
+        android:name="com.example.drinkinggamesapp.NewGameSetupActivity"
+        android:label="activity_new_game_setup"
+        tools:layout="@layout/activity_new_game_setup" />
 </navigation>

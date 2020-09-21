@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/fragment_main"
         app:navGraph="@navigation/nav_view"
-        app:defaultNavHost="true"
+        app:defaultNavHost="false"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -32,6 +32,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_main_screen" />
+        tools:layout="@layout/fragment_host_new_game" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
