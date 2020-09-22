@@ -74,7 +74,7 @@ public class Fragment_main extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.button_new_game:
                 Log.d("Fragment_main", "Button New game pressed");
-                Navigation.findNavController(v).navigate(R.id.newGameSetup);
+                Navigation.findNavController(v).navigate(R.id.action_navigation_fragment_main_to_newGameSetup);
         }
     }
 

@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".NewGameSelectGames">
+    tools:context=".NewGameAmountPlayersFragment">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/texttop"
+        android:id="@+id/newplayertexttop"
         android:layout_width="match_parent"
         android:textAlignment="center"
         android:background="@color/colorDark"
         android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"
-        android:text="Games"
+        android:text="Players"
         android:textSize="30sp"
         android:textStyle="bold"
         android:paddingTop="15sp"
@@ -26,13 +26,13 @@
         android:id="@+id/newplayertextmid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select the games 🎮"
+        android:text="How many rounds? 🤔"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/texttop"
+        app:layout_constraintTop_toBottomOf="@id/newplayertexttop"
         app:layout_constraintBottom_toTopOf="@id/picker"/>
-    <LinearLayout
+    <android.widget.NumberPicker
         android:id="@+id/picker"
         android:layout_width="200dp"
         android:layout_height="400dp"
@@ -41,19 +41,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_marginBottom="25dp">
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_all_games"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:switchPadding="30dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="All Games"
-            android:textSize="20sp"/>
-    </LinearLayout>
+    </android.widget.NumberPicker>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

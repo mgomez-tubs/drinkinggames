@@ -3,28 +3,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_new_game"
-    app:startDestination="@id/newGamePlayersFragment">
+    app:startDestination="@id/newGameAmountPlayersFragment">
+
     <fragment
-        android:id="@+id/newGamePlayersFragment"
-        android:name="com.example.drinkinggamesapp.NewGamePlayersFragment"
-        android:label="fragment_new_game_players"
-        tools:layout="@layout/fragment_new_game_players" >
+        android:id="@+id/newGameAmountPlayersFragment"
+        android:name="com.example.drinkinggamesapp.NewGameAmountPlayersFragment"
+        android:label="fragment_new_game_amount_players"
+        tools:layout="@layout/fragment_new_game_amount_players" >
         <action
-            android:id="@+id/action_newGamePlayersFragment_to_newGamePlayersNamesFragment"
-            app:destination="@id/newGamePlayersNamesFragment" />
+            android:id="@+id/action_newGameAmountPlayersFragment_to_newGamePlayersNamesFragment"
+            app:destination="@id/newGamePlayersNamesFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
+
     <fragment
         android:id="@+id/newGamePlayersNamesFragment"
         android:name="com.example.drinkinggamesapp.NewGamePlayersNamesFragment"
         android:label="fragment_new_game_players_names"
         tools:layout="@layout/fragment_new_game_players_names" >
+        <argument
+            android:name="amount_players"
+            app:argType="integer"
+            android:defaultValue="1">
+        </argument>
         <action
             android:id="@+id/action_newGamePlayersNamesFragment_to_newGameSelectGames"
-            app:destination="@id/newGameSelectGames" />
+            app:destination="@id/newGameSelectGames"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/newGameSelectGames"
         android:name="com.example.drinkinggamesapp.NewGameSelectGames"
         android:label="fragment_new_game_select_games"
-        tools:layout="@layout/fragment_new_game_select_games" />
+        tools:layout="@layout/fragment_new_game_select_games"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left">
+        <action
+            android:id="@+id/action_newGameSelectGames_to_newGameRoundsFragment"
+            app:destination="@id/newGameRoundsFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
+    <fragment
+        android:id="@+id/newGameRoundsFragment"
+        android:name="com.example.drinkinggamesapp.NewGameRoundsFragment"
+        android:label="NewGameRoundsFragment" />
+
 </navigation>

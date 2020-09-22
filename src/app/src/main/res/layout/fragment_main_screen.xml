@@ -30,7 +30,6 @@
             android:layout_height="0dp"
             android:layout_weight=".8">
 
-
             <ImageView
                 android:layout_width="300dp"
                 android:layout_height="300dp"
@@ -39,6 +38,16 @@
                 android:contentDescription="logo"
                 android:src="@mipmap/vector"/>
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="0.0.1 (alpha)"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            android:typeface="monospace" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

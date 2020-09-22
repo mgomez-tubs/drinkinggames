@@ -2,23 +2,20 @@ package com.example.drinkinggamesapp;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link NewGameRoundsFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class NewGameRoundsFragment extends Fragment {
 
-public class NewGameSelectGames extends Fragment {
-
-
-    public NewGameSelectGames() {
+    public NewGameRoundsFragment() {
         // Required empty public constructor
     }
 
@@ -31,10 +28,6 @@ public class NewGameSelectGames extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_game_select_games, container, false);
+        return inflater.inflate(R.layout.fragment_new_game_rounds, container, false);
     }
-
-
-
-
 }

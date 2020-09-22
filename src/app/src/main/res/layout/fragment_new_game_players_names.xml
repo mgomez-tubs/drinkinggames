@@ -8,12 +8,42 @@
 
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/newplayertexttop"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:background="@color/colorDark"
+        android:textColor="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:text="PlayerNames"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:paddingTop="15sp"
+        android:paddingBottom="15sp"
+        app:layout_constraintBottom_toTopOf="@id/midlayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/newplayertextmid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter the players names"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="Enter the players names 🥁"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newplayertexttop"
+        app:layout_constraintBottom_toTopOf="@id/midlayout"/>
+
+    <LinearLayout
+        android:id="@+id/midlayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/newplayertexttop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

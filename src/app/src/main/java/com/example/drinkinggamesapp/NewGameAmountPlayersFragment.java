@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
-public class NewGamePlayersFragment extends Fragment{
+public class NewGameAmountPlayersFragment extends Fragment{
+
+
 
     private NumberPicker numberPicker;
-    public NewGamePlayersFragment() {
+    public NewGameAmountPlayersFragment() {
         // Required empty public constructor
     }
 
@@ -23,14 +25,14 @@ public class NewGamePlayersFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_game_players, container, false);
-
+        return inflater.inflate(R.layout.fragment_new_game_amount_players, container, false);
     }
 
     @Override
