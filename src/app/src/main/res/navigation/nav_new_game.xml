@@ -57,6 +57,15 @@
     <fragment
         android:id="@+id/newGameRoundsFragment"
         android:name="com.example.drinkinggamesapp.NewGameRoundsFragment"
-        android:label="NewGameRoundsFragment" />
+        android:label="NewGameRoundsFragment" >
+        <action
+            android:id="@+id/action_newGameRoundsFragment_to_gameActivity"
+            app:destination="@id/gameActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/gameActivity"
+        android:name="com.example.drinkinggamesapp.GameActivity"
+        android:label="activity_game"
+        tools:layout="@layout/activity_game" />
 
 </navigation>

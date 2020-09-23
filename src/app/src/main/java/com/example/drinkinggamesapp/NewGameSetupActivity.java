@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,12 +21,18 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
 
     private LinearLayout linearLayout;
     private NavController navController;
+    private Intent gameSetupOptions;
+    public static final String AMOUNT_PLAYERS = "amount_players";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game_setup);
         linearLayout = (LinearLayout) findViewById(R.id.layout_indicator);
         navController = (NavController) Navigation.findNavController(this, R.id.fragment_new_game);
+
+        // Set up intent
+        gameSetupOptions = new Intent(this, GameActivity.class);
 
         // Add shapes
         addShape();
@@ -75,7 +82,12 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         // Pass amount of players
                         Bundle args = new Bundle();
                         NumberPicker picker = findViewById(R.id.picker);
+
+                        // Pass options to the next fragment
                         args.putInt("amount_players", picker.getValue());
+
+                        // Pass options to the game activity
+                        gameSetupOptions.putExtra("amount_players", picker.getValue());
                         Log.d("onClick", "Value sent:" + String.valueOf(picker.getValue()));
 
                         navController.navigate(R.id.action_newGameAmountPlayersFragment_to_newGamePlayersNamesFragment, args);
@@ -89,14 +101,20 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         Log.d("Switch Block","Currently in NewGame Setup");
                         SwitchMaterial switchMaterial = findViewById(R.id.switch_all_games);
                         Log.d("newGameSetup","Toast will be shown");
-                        if(switchMaterial.isChecked()==false){
-                            Toast toast = Toast.makeText(getApplicationContext(), "You need to pick a game", 2000);
+                        if(!switchMaterial.isChecked()){
+                            Toast toast = Toast.makeText(getApplicationContext(), "You need to pick a game", Toast.LENGTH_SHORT);
                             toast.show();
                         } else {
                             navController.navigate(R.id.action_newGameSelectGames_to_newGameRoundsFragment);
                         }
                         break;
                     case R.id.newGameRoundsFragment:
+                        NumberPicker picker_rounds = findViewById(R.id.picker);
+
+                        // Pass options to the game activity
+                        gameSetupOptions.putExtra("amount_rounds", picker_rounds.getValue());
+                        //navController.navigate(R.id.action_newGameRoundsFragment_to_gameActivity);
+                        startActivity(gameSetupOptions);
                         break;
                 }
         }

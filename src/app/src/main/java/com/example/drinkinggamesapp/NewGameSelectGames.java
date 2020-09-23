@@ -33,8 +33,4 @@ public class NewGameSelectGames extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_new_game_select_games, container, false);
     }
-
-
-
-
 }

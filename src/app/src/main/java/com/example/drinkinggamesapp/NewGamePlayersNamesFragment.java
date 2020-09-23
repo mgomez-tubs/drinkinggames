@@ -29,7 +29,7 @@ public class NewGamePlayersNamesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        amount_of_players =getArguments().getInt("amount_players");
+        amount_of_players = getArguments().getInt("amount_players");
         Log.d("Received", String.valueOf(amount_of_players));
     }
 
@@ -45,7 +45,7 @@ public class NewGamePlayersNamesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.d("add Player","add player");
 
-        linearLayout = (LinearLayout) getView().findViewById(R.id.midlayout);
+        linearLayout = getView().findViewById(R.id.midlayout);
 
         for(int i = 0 ; i < amount_of_players ; i++) {
             addPlayerToLayout(i+1);

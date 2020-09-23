@@ -1,19 +1,17 @@
 package com.example.drinkinggamesapp;
 
-import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.ActivityNavigator;
-import androidx.navigation.NavController;
+
 import androidx.navigation.Navigation;
 
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,11 +44,22 @@ public class Fragment_main extends Fragment implements View.OnClickListener{
         view.findViewById(R.id.button_new_game).setOnClickListener(this);
 
         // Background Video
-        Log.d("onViewCreated","This was reached");
         videoView = (VideoView) view.findViewById(R.id.background_video);
-
         Uri uri = Uri.parse("android.resource://"+view.getContext().getPackageName()+"/"+R.raw.falls);
         videoView.setVideoURI(uri);
+
+        /*
+
+            On older devices, the background video wil stop the music playing in background -
+            Consider a solution.
+            - Implement video as texture according to https://stackoverflow.com/questions/29280191/how-to-prevent-videoview-mediaplayer-from-stopping-other-apps-audio/31569930#31569930
+
+         */
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {   // O means Oreo
+            videoView.setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE);
+        }
+
         videoView.start();
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override

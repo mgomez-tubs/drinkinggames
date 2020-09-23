@@ -2,19 +2,18 @@ package com.example.drinkinggamesapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.NumberPicker;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewGameRoundsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class NewGameRoundsFragment extends Fragment {
 
+    private NumberPicker numberPicker = null;
     public NewGameRoundsFragment() {
         // Required empty public constructor
     }
@@ -29,5 +28,13 @@ public class NewGameRoundsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_new_game_rounds, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        numberPicker = view.findViewById(R.id.picker);
+        numberPicker.setMinValue(1);
+        numberPicker.setMaxValue(10);
     }
 }
