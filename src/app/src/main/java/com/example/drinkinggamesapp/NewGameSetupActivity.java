@@ -1,8 +1,11 @@
 package com.example.drinkinggamesapp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
@@ -19,28 +22,48 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class NewGameSetupActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private LinearLayout linearLayout;
-    private NavController navController;
-    private Intent gameSetupOptions;
-    public static final String AMOUNT_PLAYERS = "amount_players";
+    private LinearLayout mLinearLayout;
+    private NavController mNavController;
+    private Intent mGameSetupOptions;
+    private static final String AMOUNT_PLAYERS = "amount_players";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game_setup);
-        linearLayout = (LinearLayout) findViewById(R.id.layout_indicator);
-        navController = (NavController) Navigation.findNavController(this, R.id.fragment_new_game);
+        mLinearLayout = (LinearLayout) findViewById(R.id.layout_indicator);
+        mNavController = (NavController) Navigation.findNavController(this, R.id.fragment_new_game);
 
         // Set up intent
-        gameSetupOptions = new Intent(this, GameActivity.class);
+        mGameSetupOptions = new Intent(this, GameActivity.class);
 
-        // Add shapes
-        addShape();
-        addShape();
-        addShape();
-        addShape();
+        // Add shapes and toggle first one
+        addShapes();
+
+        // Listen to when navController changes fragment
+        mNavController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                switch (destination.getId()){
+                    case R.id.newGameAmountPlayersFragment:
+                        updatePageIndicatorShapes(0);
+                        break;
+                    case R.id.newGamePlayersNamesFragment:
+                        updatePageIndicatorShapes(1);
+                        break;
+                    case R.id.newGameSelectGames:
+                        updatePageIndicatorShapes(2);
+                        break;
+                    case R.id.newGameRoundsFragment:
+                        updatePageIndicatorShapes(3);
+                        break;
+                }
+            }
+        });
 
         findViewById(R.id.button_next).setOnClickListener(this);
+        /*
+         This Block is kept for future reference
 
         switch (navController.getCurrentDestination().getId()){
             case R.id.newGameAmountPlayersFragment:
@@ -53,17 +76,33 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                 Log.d("Switch Block","Currently in NewGame Setup");
                 break;
         }
+        */
     }
 
-    private void addShape(){
-        ImageView shape = new ImageView(getApplicationContext());
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(8,0,8,0);
-        shape.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.indicator_inactive));
-        shape.setLayoutParams(layoutParams);
-        linearLayout.addView(shape);
+    ImageView[] mPageIndicatorShape = null;
+
+    private int pages = 4;
+    private void addShapes(){
+        mPageIndicatorShape = new ImageView[pages];
+        for(int i = 0; i< pages;i++){
+            mPageIndicatorShape[i] = new ImageView(getApplicationContext());
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(8,0,8,0);
+            mPageIndicatorShape[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.indicator_inactive));
+            mPageIndicatorShape[i].setLayoutParams(layoutParams);
+            mLinearLayout.addView(mPageIndicatorShape[i]);
+        }
+    }
+
+    public void updatePageIndicatorShapes(int currentPage){
+        mPageIndicatorShape[currentPage].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.indicator_active));
+        for(int i = 0 ; i < pages ; i++){
+            if(i<currentPage||i>currentPage){
+                mPageIndicatorShape[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.indicator_inactive));
+            }
+        }
     }
 
     @Override
@@ -77,7 +116,7 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         Switch between destinations, depending on the current Fragment
                         (we are controlling the fragments from the Activity, therefore we need to do it like this)
                  */
-                switch (navController.getCurrentDestination().getId()){
+                switch (mNavController.getCurrentDestination().getId()){
                     case R.id.newGameAmountPlayersFragment:
                         // Pass amount of players
                         Bundle args = new Bundle();
@@ -87,14 +126,14 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         args.putInt("amount_players", picker.getValue());
 
                         // Pass options to the game activity
-                        gameSetupOptions.putExtra("amount_players", picker.getValue());
+                        mGameSetupOptions.putExtra("amount_players", picker.getValue());
                         Log.d("onClick", "Value sent:" + String.valueOf(picker.getValue()));
 
-                        navController.navigate(R.id.action_newGameAmountPlayersFragment_to_newGamePlayersNamesFragment, args);
+                        mNavController.navigate(R.id.action_newGameAmountPlayersFragment_to_newGamePlayersNamesFragment, args);
                         Log.d("Switch Block","Currently in New Game Players Fragment");
                         break;
                     case R.id.newGamePlayersNamesFragment:
-                        navController.navigate(R.id.action_newGamePlayersNamesFragment_to_newGameSelectGames);
+                        mNavController.navigate(R.id.action_newGamePlayersNamesFragment_to_newGameSelectGames);
                         Log.d("Switch Block","Currently in NewGame Players Names Fragment");
                         break;
                     case R.id.newGameSelectGames:
@@ -105,16 +144,16 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                             Toast toast = Toast.makeText(getApplicationContext(), "You need to pick a game", Toast.LENGTH_SHORT);
                             toast.show();
                         } else {
-                            navController.navigate(R.id.action_newGameSelectGames_to_newGameRoundsFragment);
+                            mNavController.navigate(R.id.action_newGameSelectGames_to_newGameRoundsFragment);
                         }
                         break;
                     case R.id.newGameRoundsFragment:
                         NumberPicker picker_rounds = findViewById(R.id.picker);
 
                         // Pass options to the game activity
-                        gameSetupOptions.putExtra("amount_rounds", picker_rounds.getValue());
+                        mGameSetupOptions.putExtra("amount_rounds", picker_rounds.getValue());
                         //navController.navigate(R.id.action_newGameRoundsFragment_to_gameActivity);
-                        startActivity(gameSetupOptions);
+                        startActivity(mGameSetupOptions);
                         break;
                 }
         }
