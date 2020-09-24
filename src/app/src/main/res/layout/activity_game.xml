@@ -12,7 +12,7 @@
         android:id="@+id/current_round"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Round 1"
+        android:text="= PLACEHOLDER ="
         android:gravity="center"
         android:background="@color/colorDark"
         android:textColor="@color/white"

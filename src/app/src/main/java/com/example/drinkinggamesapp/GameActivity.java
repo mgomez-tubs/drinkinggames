@@ -25,13 +25,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
 
         // Receive Intent
-        amount_of_rounds = getIntent().getExtras().getInt("amount_players");
+        amount_of_rounds = getIntent().getExtras().getInt("amount_rounds");
 
         // Create Round Controller
         roundController = new RoundController(amount_of_rounds);
-        findViewById(R.id.button_next).setOnClickListener(this);
 
+        findViewById(R.id.button_next).setOnClickListener(this);
         currentRoundTextView = findViewById(R.id.current_round);
+
+        roundController.nextRound();
+        currentRoundTextView.setText(roundController.roundString());
     }
 
     private final Runnable mRunnable = new Runnable() {
@@ -83,7 +86,7 @@ class RoundController{
 
     public RoundController(int numberOfRounds){
          this.numberOfRounds = numberOfRounds;
-         current_round = 1;
+         current_round = 0;
     }
 
     public int getCurrent_round() {
@@ -99,9 +102,9 @@ class RoundController{
 
     public String roundString(){
         if(current_round<=numberOfRounds) {
-            return "Round " + this.current_round;
+            return "Round "+ this.current_round + "/ " + this.numberOfRounds;
         } else {
-            return "GAME OVER NO MORE ROUNDS 😦" ;
+            return "😦 GAME OVER NO MORE ROUNDS 😦" ;
         }
     }
 }
