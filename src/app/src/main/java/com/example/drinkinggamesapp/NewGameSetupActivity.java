@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class NewGameSetupActivity extends AppCompatActivity implements View.OnClickListener{
@@ -46,15 +47,22 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 switch (destination.getId()){
                     case R.id.newGameAmountPlayersFragment:
+                        // Update Material Button
+                        updateButtonNext();
                         updatePageIndicatorShapes(0);
                         break;
                     case R.id.newGamePlayersNamesFragment:
-                        updatePageIndicatorShapes(1);
+                        // Update Material Button
+                        updateButtonNext();updatePageIndicatorShapes(1);
                         break;
                     case R.id.newGameSelectGames:
+                        // Update Material Button
+                        updateButtonNext();
                         updatePageIndicatorShapes(2);
                         break;
                     case R.id.newGameRoundsFragment:
+                        // Update Material Button
+                        updateButtonNext();
                         updatePageIndicatorShapes(3);
                         break;
                 }
@@ -105,6 +113,15 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    public void updateButtonNext(){
+        MaterialButton materialButton = findViewById(R.id.button_next);
+        if(mNavController.getCurrentDestination().getId()==R.id.newGameRoundsFragment){
+            materialButton.setText("Start Game");
+        } else {
+            materialButton.setText("Next");
+        }
+    }
+
     @Override
     public void onClick(View v) {
         /*  Transition between Fragments is controlled from this fragment
@@ -148,8 +165,8 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         }
                         break;
                     case R.id.newGameRoundsFragment:
-                        NumberPicker picker_rounds = findViewById(R.id.picker);
 
+                        NumberPicker picker_rounds = findViewById(R.id.picker);
                         // Pass options to the game activity
                         mGameSetupOptions.putExtra("amount_rounds", picker_rounds.getValue());
                         //navController.navigate(R.id.action_newGameRoundsFragment_to_gameActivity);
