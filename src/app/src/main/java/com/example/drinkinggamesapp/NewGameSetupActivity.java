@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +23,7 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-public class NewGameSetupActivity extends AppCompatActivity implements View.OnClickListener{
+public class NewGameSetupActivity extends AppCompatActivity implements View.OnClickListener, NewGamePlayersNamesFragment.OnCustomEventListener{
 
     private LinearLayout mLinearLayout;
     private NavController mNavController;
@@ -90,6 +92,20 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
     ImageView[] mPageIndicatorShape = null;
 
     private int pages = 4;
+
+    /*          //////////////////////          */
+    /*
+                Callback implementation
+     */
+    // This works as a Slot. When the signal onEvent is sent from the fragment, this function will be called
+    @Override
+    public void onEvent(int event) {
+        Toast.makeText(this, "Choice is " + Integer.toString(event),
+                Toast.LENGTH_SHORT).show();
+    }
+
+    /*          //////////////////////          */
+
     private void addShapes(){
         mPageIndicatorShape = new ImageView[pages];
         for(int i = 0; i< pages;i++){
@@ -135,23 +151,32 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                  */
                 switch (mNavController.getCurrentDestination().getId()){
                     case R.id.newGameAmountPlayersFragment:
-                        // Pass amount of players
+                        /*
+                            Pass amount of players to the next fragment and to the next activity
+                         */
                         Bundle args = new Bundle();
                         NumberPicker picker = findViewById(R.id.picker);
-
                         // Pass options to the next fragment
                         args.putInt("amount_players", picker.getValue());
-
                         // Pass options to the game activity
                         mGameSetupOptions.putExtra("amount_players", picker.getValue());
-                        Log.d("onClick", "Value sent:" + String.valueOf(picker.getValue()));
 
+                        /*
+                            Navigate to the next fragment
+                         */
                         mNavController.navigate(R.id.action_newGameAmountPlayersFragment_to_newGamePlayersNamesFragment, args);
-                        Log.d("Switch Block","Currently in New Game Players Fragment");
                         break;
                     case R.id.newGamePlayersNamesFragment:
+                        /*
+                            Pass player names to the next activity
+                         */
+
+                        //String[] playerNames = new String[];
+
+                        Log.d("Fragment: ", String.valueOf(mNavController.getCurrentDestination().getId()));
+
+                        //mGameSetupOptions.putExtra("")
                         mNavController.navigate(R.id.action_newGamePlayersNamesFragment_to_newGameSelectGames);
-                        Log.d("Switch Block","Currently in NewGame Players Names Fragment");
                         break;
                     case R.id.newGameSelectGames:
                         Log.d("Switch Block","Currently in NewGame Setup");
@@ -167,7 +192,7 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                     case R.id.newGameRoundsFragment:
 
                         NumberPicker picker_rounds = findViewById(R.id.picker);
-                        // Pass options to the game activity
+                        // Pass number of rounds to the Game Activity
                         mGameSetupOptions.putExtra("amount_rounds", picker_rounds.getValue());
                         //navController.navigate(R.id.action_newGameRoundsFragment_to_gameActivity);
                         startActivity(mGameSetupOptions);
@@ -175,4 +200,6 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                 }
         }
     }
+
+
 }
