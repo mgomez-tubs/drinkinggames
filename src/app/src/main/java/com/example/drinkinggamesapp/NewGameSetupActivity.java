@@ -5,9 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
+import androidx.navigation.NavHost;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.app.ActivityManager;
 import android.content.Intent;
@@ -23,12 +28,14 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-public class NewGameSetupActivity extends AppCompatActivity implements View.OnClickListener, NewGamePlayersNamesFragment.OnCustomEventListener{
+public class NewGameSetupActivity extends AppCompatActivity implements View.OnClickListener{
 
     private LinearLayout mLinearLayout;
     private NavController mNavController;
     private Intent mGameSetupOptions;
     private static final String AMOUNT_PLAYERS = "amount_players";
+
+    MyViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,9 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_new_game_setup);
         mLinearLayout = (LinearLayout) findViewById(R.id.layout_indicator);
         mNavController = (NavController) Navigation.findNavController(this, R.id.fragment_new_game);
+
+        // Set up View Model
+        model = new ViewModelProvider(this).get(MyViewModel.class);
 
         // Set up intent
         mGameSetupOptions = new Intent(this, GameActivity.class);
@@ -92,19 +102,6 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
     ImageView[] mPageIndicatorShape = null;
 
     private int pages = 4;
-
-    /*          //////////////////////          */
-    /*
-                Callback implementation
-     */
-    // This works as a Slot. When the signal onEvent is sent from the fragment, this function will be called
-    @Override
-    public void onEvent(int event) {
-        Toast.makeText(this, "Choice is " + Integer.toString(event),
-                Toast.LENGTH_SHORT).show();
-    }
-
-    /*          //////////////////////          */
 
     private void addShapes(){
         mPageIndicatorShape = new ImageView[pages];
@@ -167,15 +164,11 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         mNavController.navigate(R.id.action_newGameAmountPlayersFragment_to_newGamePlayersNamesFragment, args);
                         break;
                     case R.id.newGamePlayersNamesFragment:
-                        /*
-                            Pass player names to the next activity
-                         */
-
-                        //String[] playerNames = new String[];
 
                         Log.d("Fragment: ", String.valueOf(mNavController.getCurrentDestination().getId()));
+                        String[] playerNames = model.getmPlayerNames();
+                        Log.d("onButtonPress","First Player Name is: " + playerNames[0]);
 
-                        //mGameSetupOptions.putExtra("")
                         mNavController.navigate(R.id.action_newGamePlayersNamesFragment_to_newGameSelectGames);
                         break;
                     case R.id.newGameSelectGames:

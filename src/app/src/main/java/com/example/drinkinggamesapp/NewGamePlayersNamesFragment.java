@@ -1,13 +1,15 @@
 package com.example.drinkinggamesapp;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,56 +21,38 @@ public class NewGamePlayersNamesFragment extends Fragment {
 
     private LinearLayout mLinearLayout;
 
-
-
-    /*          //////////////////////          */
-    /*
-        Callback implementation
-     */
-
-    private OnCustomEventListener mListener;
-    public interface OnCustomEventListener{
-        public void onEvent(int event);
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        /*
-            Verify that the activity has the interface installed
-         */
-        if (context instanceof OnCustomEventListener) {
-            Log.d("onAttach Fragment", "Activity has interface installed");
-            mListener = (OnCustomEventListener) context;
-        } else {
-            throw new ClassCastException(context.toString()
-                    + "ERROR");
-        }
-    }
-
-    public void setCustomEventListener(OnCustomEventListener eventListener) {
-        this.mListener=eventListener;
-    }
-    /*          //////////////////////          */
-
     public int getmAmount_of_players() {
         return mAmount_of_players;
     }
 
     private int mAmount_of_players;
-    private EditText[] mPlayerNamesArray;
+    private EditText[] mPlayerNamesEditText;
+
+    MyViewModel viewModel;
 
     public NewGamePlayersNamesFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAmount_of_players = getArguments().getInt("amount_players");
-        mPlayerNamesArray = new EditText[mAmount_of_players];
+        mPlayerNamesEditText = new EditText[mAmount_of_players];
+
+        for(int i = 0; i < mAmount_of_players; i++){
+            mPlayerNamesEditText[i] = new EditText(getActivity().getApplicationContext());
+        }
+
         Log.d("Received", String.valueOf(mAmount_of_players));
+
+        // Set Up View Model
+        // The implementation in the fragment is not the same as in the activity.
+        // In order to mantain communication to the activity ViewModel we need to get its ViewModel and not create another one
+        viewModel = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
+
+        // Set up amount of players
+        viewModel.initmPlayerNames(mAmount_of_players);
     }
 
     @Override
@@ -86,17 +70,34 @@ public class NewGamePlayersNamesFragment extends Fragment {
         mLinearLayout = getView().findViewById(R.id.midlayout);
 
         for(int i = 0 ; i < mAmount_of_players ; i++) {
-            addEditTextToLayout(mPlayerNamesArray[i], i+1);
+            addEditTextToLayout(mPlayerNamesEditText[i], i+1);
+            final int finalI = i;
+            mPlayerNamesEditText[i].addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    //Log.d("onTextChanged",mPlayerNamesEditText[finalI].getText().toString());
+                    viewModel.setmPlayerNames(mPlayerNamesEditText[finalI].getText().toString(), finalI);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
 
-        mListener.onEvent(1335);
     }
 
     private void addEditTextToLayout(EditText editText, int order){
         // to convert to dps
         final float scale = getContext().getResources().getDisplayMetrics().density;
 
-        editText = new EditText(getActivity().getApplicationContext());
+        //editText = new EditText(getActivity().getApplicationContext()); -> declare this in onViewCreated(), but dont do it two times!
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
