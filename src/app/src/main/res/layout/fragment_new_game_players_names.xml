@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".NewGamePlayersNamesFragment">
+    tools:context=".newgamesettings.NewGamePlayersNamesFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.textview.MaterialTextView
@@ -14,12 +14,12 @@
         android:background="@color/colorDark"
         android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"
-        android:text="PlayerNames"
+        android:text="Player Names"
         android:textSize="30sp"
         android:textStyle="bold"
         android:paddingTop="15sp"
         android:paddingBottom="15sp"
-        app:layout_constraintBottom_toTopOf="@id/midlayout"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

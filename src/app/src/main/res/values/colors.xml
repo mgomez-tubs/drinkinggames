@@ -6,4 +6,5 @@
     <color name="colorDark">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="bottomNavColor">#000000</color>
+    <color name="transparent">#FF00FF</color>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewGameSetupActivity"
+    tools:context=".newgamesettings.NewGameSetupActivity"
     android:orientation="vertical">
 
     <fragment
@@ -28,18 +28,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/button_next"
-            app:layout_constraintBottom_toBottomOf="@id/button_next"
-            app:layout_constraintTop_toTopOf="@id/button_next"
+            app:layout_constraintEnd_toStartOf="@id/button_next_round"
+            app:layout_constraintBottom_toBottomOf="@id/button_next_round"
+            app:layout_constraintTop_toTopOf="@id/button_next_round"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:padding="15dp">
-
-
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_next"
+            android:id="@+id/button_next_round"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"

@@ -38,6 +38,12 @@ public class MyViewModel extends ViewModel {
     }
 
     public String[] getmPlayerNames(){
+        for(int i = 0 ; i<this.mPlayerNames.length; i++){
+            if(this.mPlayerNames[i] == null){
+                this.mPlayerNames[i] = "Player " + i;
+            };
+
+        }
         return this.mPlayerNames;
     }
 

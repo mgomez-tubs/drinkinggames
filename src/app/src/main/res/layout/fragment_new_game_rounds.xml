@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".NewGameAmountPlayersFragment">
+    tools:context=".newgamesettings.NewGameAmountPlayersFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/newplayertexttop"
@@ -13,12 +13,12 @@
         android:background="@color/colorDark"
         android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"
-        android:text="Players"
+        android:text="Rounds"
         android:textSize="30sp"
         android:textStyle="bold"
         android:paddingTop="15sp"
         android:paddingBottom="15sp"
-        app:layout_constraintBottom_toTopOf="@id/newplayertextmid"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

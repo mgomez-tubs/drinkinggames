@@ -1,8 +1,10 @@
-package com.example.drinkinggamesapp;
+package com.example.drinkinggamesapp.main;
 
 import android.os.Bundle;
 
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.example.drinkinggamesapp.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

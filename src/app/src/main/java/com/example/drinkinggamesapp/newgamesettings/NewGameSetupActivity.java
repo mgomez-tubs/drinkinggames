@@ -15,14 +15,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -34,6 +38,9 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
     private NavController mNavController;
     private Intent mGameSetupOptions;
     private static final String AMOUNT_PLAYERS = "amount_players";
+
+    // Amount of pages in the settings activity
+    private int pages = 5;
 
     MyViewModel model;
 
@@ -65,7 +72,8 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         break;
                     case R.id.newGamePlayersNamesFragment:
                         // Update Material Button
-                        updateButtonNext();updatePageIndicatorShapes(1);
+                        updateButtonNext();
+                        updatePageIndicatorShapes(1);
                         break;
                     case R.id.newGameSelectGames:
                         // Update Material Button
@@ -76,6 +84,11 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         // Update Material Button
                         updateButtonNext();
                         updatePageIndicatorShapes(3);
+                        break;
+                    case R.id.newGameConfirmSettings:
+                        // Update Material Button
+                        updateButtonNext();
+                        updatePageIndicatorShapes(4);
                         break;
                 }
             }
@@ -100,8 +113,6 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
     }
 
     ImageView[] mPageIndicatorShape = null;
-
-    private int pages = 4;
 
     private void addShapes(){
         mPageIndicatorShape = new ImageView[pages];
@@ -135,6 +146,8 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+
+
     @Override
     public void onClick(View v) {
         /*  Transition between Fragments is controlled from this fragment
@@ -155,8 +168,10 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         NumberPicker picker = findViewById(R.id.picker);
                         // Pass options to the next fragment
                         args.putInt("amount_players", picker.getValue());
-                        // Pass options to the game activity
+
+                        //[>] Pass options to the game activity
                         mGameSetupOptions.putExtra("amount_players", picker.getValue());
+                        //[>]
 
                         /*
                             Navigate to the next fragment
@@ -165,9 +180,11 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                         break;
                     case R.id.newGamePlayersNamesFragment:
 
-                        Log.d("Fragment: ", String.valueOf(mNavController.getCurrentDestination().getId()));
                         String[] playerNames = model.getmPlayerNames();
-                        Log.d("onButtonPress","First Player Name is: " + playerNames[0]);
+
+                        //[>] Pass player names to the game activity
+                        mGameSetupOptions.putExtra("player_names", playerNames);
+                        //[>]
 
                         mNavController.navigate(R.id.action_newGamePlayersNamesFragment_to_newGameSelectGames);
                         break;
@@ -185,9 +202,18 @@ public class NewGameSetupActivity extends AppCompatActivity implements View.OnCl
                     case R.id.newGameRoundsFragment:
 
                         NumberPicker picker_rounds = findViewById(R.id.picker);
-                        // Pass number of rounds to the Game Activity
+                        //[>] Pass number of rounds to the Game Activity
                         mGameSetupOptions.putExtra("amount_rounds", picker_rounds.getValue());
-                        //navController.navigate(R.id.action_newGameRoundsFragment_to_gameActivity);
+
+                        // Convert Intent to Bundle and pass to the next screen to show a preview
+                        Bundle final_settings = new Bundle();
+                        final_settings.putInt("amount_players", mGameSetupOptions.getExtras().getInt("amount_players"));        // Amount players
+                        final_settings.putStringArray("player_names",   mGameSetupOptions.getExtras().getStringArray("player_names"));          // Player names
+                        final_settings.putInt("amount_rounds",  mGameSetupOptions.getExtras().getInt("amount_rounds"));         // Amount rounds
+                        //final_settings.putInt("selected_games", "all games lolo");        // Selected games
+                        mNavController.navigate(R.id.action_newGameRoundsFragment_to_newGameConfirmSettings, final_settings);
+                        break;
+                    case R.id.newGameConfirmSettings:
                         startActivity(mGameSetupOptions);
                         break;
                 }

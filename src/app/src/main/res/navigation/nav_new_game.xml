@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newGameAmountPlayersFragment"
-        android:name="com.example.drinkinggamesapp.NewGameAmountPlayersFragment"
+        android:name="com.example.drinkinggamesapp.newgamesettings.NewGameAmountPlayersFragment"
         android:label="fragment_new_game_amount_players"
         tools:layout="@layout/fragment_new_game_amount_players" >
         <action
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/newGamePlayersNamesFragment"
-        android:name="com.example.drinkinggamesapp.NewGamePlayersNamesFragment"
+        android:name="com.example.drinkinggamesapp.newgamesettings.NewGamePlayersNamesFragment"
         android:label="fragment_new_game_players_names"
         tools:layout="@layout/fragment_new_game_players_names" >
         <argument
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/newGameSelectGames"
-        android:name="com.example.drinkinggamesapp.NewGameSelectGames"
+        android:name="com.example.drinkinggamesapp.newgamesettings.NewGameSelectGames"
         android:label="fragment_new_game_select_games"
         tools:layout="@layout/fragment_new_game_select_games"
         app:popEnterAnim="@anim/slide_in_left"
@@ -56,16 +56,37 @@
     </fragment>
     <fragment
         android:id="@+id/newGameRoundsFragment"
-        android:name="com.example.drinkinggamesapp.NewGameRoundsFragment"
+        android:name="com.example.drinkinggamesapp.newgamesettings.NewGameRoundsFragment"
         android:label="NewGameRoundsFragment" >
         <action
-            android:id="@+id/action_newGameRoundsFragment_to_gameActivity"
-            app:destination="@id/gameActivity" />
+            android:id="@+id/action_newGameRoundsFragment_to_newGameConfirmSettings"
+            app:destination="@id/newGameConfirmSettings"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <activity
         android:id="@+id/gameActivity"
         android:name="com.example.drinkinggamesapp.GameActivity"
         android:label="activity_game"
-        tools:layout="@layout/activity_game" />
+        tools:layout="@layout/activity_game"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"/>
+    <fragment
+        android:id="@+id/newGameConfirmSettings"
+        android:name="com.example.drinkinggamesapp.newgamesettings.NewGameConfirmSettings"
+        android:label="fragment_new_game_confirm_settings"
+        tools:layout="@layout/fragment_new_game_confirm_settings" >
+        <action
+            android:id="@+id/action_newGameConfirmSettings_to_gameActivity"
+            app:destination="@id/gameActivity"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
 
 </navigation>

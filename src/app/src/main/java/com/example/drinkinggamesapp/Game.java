@@ -8,6 +8,10 @@ public class Game {
         return min_players;
     }
 
+    public void setPlayers(String[] players) {
+        this.players = players;
+    }
+
     public void setMin_players(int min_players) {
         this.min_players = min_players;
     }
@@ -32,7 +36,6 @@ public class Game {
     int max_players;
     String name;
 
-    public Game(String[] players){
-        this.players = players;
+    public Game(){
     }
 }
