@@ -1,4 +1,4 @@
-package com.example.drinkinggamesapp;
+package com.example.drinkinggamesapp.mainscreen;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.VideoView;
+
+import com.example.drinkinggamesapp.R;
 
 public class Fragment_main extends Fragment implements View.OnClickListener{
 

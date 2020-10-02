@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main_game"
+    app:startDestination="@id/waitingForSetupFragment">
+    <fragment
+        android:id="@+id/waitingForSetupFragment"
+        android:name="com.example.drinkinggamesapp.WaitingForSetupFragment"
+        android:label="fragment_waiting_for_setup"
+        tools:layout="@layout/fragment_waiting_for_setup" >
+        <action
+            android:id="@+id/action_waitingForSetupFragment_to_dicesGameFragment"
+            app:destination="@id/dicesGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dicesGameFragment"
+        android:name="com.example.drinkinggamesapp.DicesGameFragment"
+        android:label="fragment_dices_game"
+        tools:layout="@layout/fragment_dices_game" />
+</navigation>

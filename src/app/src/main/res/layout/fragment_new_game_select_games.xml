@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".NewGameSelectGames">
+    tools:context=".newgamesettings.NewGameSelectGames">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/texttop"
@@ -18,7 +18,7 @@
         android:textStyle="bold"
         android:paddingTop="15sp"
         android:paddingBottom="15sp"
-        app:layout_constraintBottom_toTopOf="@id/newplayertextmid"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

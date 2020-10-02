@@ -1,5 +1,7 @@
-package com.example.drinkinggamesapp;
+package com.example.drinkinggamesapp.newgamesettings;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import com.example.drinkinggamesapp.R;
 
 public class NewGamePlayersNamesFragment extends Fragment {
 
@@ -56,6 +60,14 @@ public class NewGamePlayersNamesFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        // Tell activity that the fragment finished attaching
+        NewGameSetupActivity a = (NewGameSetupActivity) getActivity();
+        a.setCurrentFragmentFinishedAttaching(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -80,7 +92,6 @@ public class NewGamePlayersNamesFragment extends Fragment {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    //Log.d("onTextChanged",mPlayerNamesEditText[finalI].getText().toString());
                     viewModel.setmPlayerNames(mPlayerNamesEditText[finalI].getText().toString(), finalI);
                 }
 
@@ -90,7 +101,6 @@ public class NewGamePlayersNamesFragment extends Fragment {
                 }
             });
         }
-
     }
 
     private void addEditTextToLayout(EditText editText, int order){
@@ -111,6 +121,10 @@ public class NewGamePlayersNamesFragment extends Fragment {
         editText.setMaxLines(1);
         editText.setHint("Player " + order);
         editText.setInputType(InputType.TYPE_CLASS_TEXT);
+        // Remove parent before inflating EditText, since parent cant be overwritten
+        if(editText.getParent() != null){
+            ((ViewGroup) editText.getParent()).removeView(editText);
+        }
         mLinearLayout.addView(editText);
     }
 }

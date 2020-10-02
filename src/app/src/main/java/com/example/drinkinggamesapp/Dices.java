@@ -3,12 +3,15 @@ package com.example.drinkinggamesapp;
 import java.util.Random;
 
 public class Dices extends Game {
-    public Random rand = new Random();
+    private Random rand = new Random();
 
-    public Dices(String[] players) {
-        super(players);
-        super.setMin_players(2);
-        super.setMax_players(10);
+    public Dices() {
+        super.setMin_players(1);
+        super.setMax_players(1);
         super.setName("Dices");
+    }
+
+    public int roll(){
+        return rand.nextInt(6) + 1;
     }
 }

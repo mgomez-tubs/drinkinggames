@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_fragment_main"
-        android:name="com.example.drinkinggamesapp.Fragment_main"
+        android:name="com.example.drinkinggamesapp.mainscreen.Fragment_main"
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen" >
         <action
@@ -23,16 +23,16 @@
     <!-- The id of these Fragment Tags NEEDS to be the same as the one in the Bottom Nav Drawer -->
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.drinkinggamesapp.SettingsFragment"
+        android:name="com.example.drinkinggamesapp.mainscreen.SettingsFragment"
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.drinkinggamesapp.ProfileFragment"
+        android:name="com.example.drinkinggamesapp.mainscreen.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <activity
         android:id="@+id/newGameSetup"
-        android:name="com.example.drinkinggamesapp.NewGameSetupActivity"
+        android:name="com.example.drinkinggamesapp.newgamesettings.NewGameSetupActivity"
         android:label="activity_new_game_setup"
         tools:layout="@layout/activity_new_game_setup" />
 </navigation>

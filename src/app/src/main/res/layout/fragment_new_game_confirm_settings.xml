@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".newgamesettings.NewGameConfirmSettings">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/newplayertexttop"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:background="@color/colorDark"
+        android:textColor="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:text="Confirm Settings"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:paddingTop="15sp"
+        android:paddingBottom="15sp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/newplayertextmid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm game settings"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newplayertexttop"
+        app:layout_constraintBottom_toTopOf="@id/main_layout"/>
+    <LinearLayout
+        android:id="@+id/main_layout"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        app:layout_constraintTop_toBottomOf="@id/newplayertextmid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Players"
+                android:textSize="14sp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/textView_amount_players"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=""
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Player names"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/textView_player_names"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=""
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Selected games"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/textView_selected_games"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=""
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Rounds"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/textView_rounds"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=""
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

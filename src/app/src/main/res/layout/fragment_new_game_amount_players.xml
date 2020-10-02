@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".NewGameAmountPlayersFragment">
+    tools:context=".newgamesettings.NewGameAmountPlayersFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/newplayertexttop"
@@ -16,12 +16,13 @@
         android:text="Players"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:layout_marginTop="25dp"
         android:paddingTop="15sp"
         android:paddingBottom="15sp"
-        app:layout_constraintBottom_toTopOf="@id/newplayertextmid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/newplayertextmid"
         android:layout_width="wrap_content"

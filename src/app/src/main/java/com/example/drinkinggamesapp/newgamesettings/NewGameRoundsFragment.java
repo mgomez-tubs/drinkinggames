@@ -1,5 +1,6 @@
-package com.example.drinkinggamesapp;
+package com.example.drinkinggamesapp.newgamesettings;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,11 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
+import com.example.drinkinggamesapp.R;
+
 public class NewGameRoundsFragment extends Fragment {
 
     private NumberPicker numberPicker = null;
     public NewGameRoundsFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Tell activity that the fragment finished attaching
+        NewGameSetupActivity a = (NewGameSetupActivity) getActivity();
+        a.setCurrentFragmentFinishedAttaching(true);
     }
 
     @Override

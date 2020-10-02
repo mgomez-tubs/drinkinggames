@@ -1,4 +1,4 @@
-package com.example.drinkinggamesapp;
+package com.example.drinkinggamesapp.mainscreen;
 
 import android.os.Bundle;
 
@@ -8,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class hostNewGame extends Fragment {
+import com.example.drinkinggamesapp.R;
 
-    public hostNewGame() {
+public class ProfileFragment extends Fragment {
+
+
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -23,6 +26,6 @@ public class hostNewGame extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_host_new_game, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }

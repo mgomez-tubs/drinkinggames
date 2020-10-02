@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".Fragment_main">
+        tools:context=".mainscreen.Fragment_main">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:gravity="center"
-            android:text="0.0.1 (alpha)"
+            android:text="0.0.15 (alpha)"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="italic"

@@ -1,4 +1,4 @@
-package com.example.drinkinggamesapp;
+package com.example.drinkinggamesapp.newgamesettings;
 
 import android.util.Log;
 
@@ -19,10 +19,6 @@ public class MyViewModel extends ViewModel {
     private int testValue;
     private String[] mPlayerNames;
 
-    public int getTestValue() {
-        return testValue;
-    }
-
     // No mutations, simple implementation
     public void setValue(int v){
         this.testValue = v;
@@ -38,6 +34,12 @@ public class MyViewModel extends ViewModel {
     }
 
     public String[] getmPlayerNames(){
+        for(int i = 0 ; i<this.mPlayerNames.length; i++){
+            if(this.mPlayerNames[i] == null){
+                this.mPlayerNames[i] = "Player " + i;
+            };
+
+        }
         return this.mPlayerNames;
     }
 
