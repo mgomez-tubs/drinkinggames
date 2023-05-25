@@ -1,6 +1,6 @@
 # Drinkinggamesapp
 
-A just for fun unfinished prototype for an Android App I built to get started with native Android development. Build using Android Studio. Implements the Jetpack Navigation component.
+An unfinished prototype/demo/skeleton of an Android App I assembled to get some knowledge with native Android development. Build using Android Studio. Implements the Jetpack Navigation component.
 
 ## Instructions
 1. Clone the repository
